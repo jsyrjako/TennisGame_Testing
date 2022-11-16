@@ -77,6 +77,49 @@ public class TennisGameTest {
 		game.player2Scored();			
 	}
 	
+	
+	@Test
+	public void testTennisGame_getScore_love_love() throws TennisGameException {
+		//Arrange
+		TennisGame game = new TennisGame();		
+		
+		//Act
+		String score = game.getScore() ;
+		// Assert
+		assertEquals("love - love score incorrect", "love - love", score);		
+	}
+	
+	@Test
+	public void testTennisGame_getScore_15_15() throws TennisGameException {
+		//Arrange
+		TennisGame game = new TennisGame();		
+		
+		game.player1Scored();
+		game.player2Scored();
+		
+		//Act
+		String score = game.getScore() ;
+		// Assert
+		assertEquals("15 - 15 score incorrect", "15 - 15", score);		
+	}
+	
+	@Test
+	public void testTennisGame_getScore_30_30() throws TennisGameException {
+		//Arrange
+		TennisGame game = new TennisGame();		
+		
+		game.player1Scored();
+		game.player1Scored();
+		
+		game.player2Scored();
+		game.player2Scored();
+		
+		//Act
+		String score = game.getScore() ;
+		// Assert
+		assertEquals("30 - 30 score incorrect", "30 - 30", score);		
+	}
+	
 	@Test
 	public void testTennisGame_EahcPlayerWin3Points_Score_Deuce() throws TennisGameException {
 		//Arrange
@@ -97,7 +140,7 @@ public class TennisGameTest {
 	}
 	
 	@Test
-	public void testTennisGame_EahcPlayerWin3Points_Player1Win1_Score_Advantage() throws TennisGameException {
+	public void testTennisGame_EahcPlayerWin2Points_Player1Win1_Score_Advantage() throws TennisGameException {
 		//Arrange
 		TennisGame game = new TennisGame();
 		
@@ -107,9 +150,7 @@ public class TennisGameTest {
 		
 		game.player2Scored();
 		game.player2Scored();
-		game.player2Scored();
-		
-		game.player1Scored();
+	
 		
 		//Act
 		String score = game.getScore() ;
@@ -117,4 +158,24 @@ public class TennisGameTest {
 		assertEquals("Advantage score incorrect", "player1 has advantage", score);		
 	}
 	
+	@Test
+	public void testTennisGame_EahcPlayerWin2Points_Player2Win1_Score_Advantage() throws TennisGameException {
+		//Arrange
+		TennisGame game = new TennisGame();
+		
+		game.player1Scored();
+		game.player1Scored();
+		
+		game.player2Scored();
+		game.player2Scored();
+		game.player2Scored();
+	
+		
+		//Act
+		String score = game.getScore() ;
+		System.out.print(score);
+		// Assert
+		assertEquals("Advantage score incorrect", "player2 has advantage", score);		
+	}
+		
 }
